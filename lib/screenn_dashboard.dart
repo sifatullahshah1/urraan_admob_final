@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_admob_code/admob/admob_manage.dart';
 import 'package:flutter_admob_code/admob/appopen_ad_helper.dart';
 import 'package:flutter_admob_code/admob/banner_ad_helper.dart';
 import 'package:flutter_admob_code/screen_second.dart';
@@ -31,6 +32,16 @@ class _ScreenDashboardState extends State<ScreenDashboard>
   @override
   initState() {
     super.initState();
+
+    print(AdmobManager.appId);
+    print(AdmobManager.bannerAdaptiveId);
+    print(AdmobManager.bannerFixedId);
+    print(AdmobManager.interstitialId);
+    print(AdmobManager.rewardedInterstitialId);
+    print(AdmobManager.rewardedId);
+    print(AdmobManager.nativeId);
+    print(AdmobManager.nativeVideoId);
+    print(AdmobManager.appOpenId);
 
     WidgetsBinding.instance.addObserver(this);
     appOpenAdHelper.loadAppOpenAd();

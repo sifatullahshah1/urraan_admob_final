@@ -7,7 +7,7 @@ class AppOpenAdHelper {
 
   void loadAppOpenAd() {
     AppOpenAd.load(
-      adUnitId: AdmobManager.appOpen,
+      adUnitId: AdmobManager.appOpenId,
       request: const AdRequest(),
       adLoadCallback: AppOpenAdLoadCallback(
         onAdLoaded: (AppOpenAd appOpenAd) {

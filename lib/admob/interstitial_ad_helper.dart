@@ -9,7 +9,7 @@ class InterstitialAdHelper {
       {required Function() onAdDismissed,
       required Function() onAdShowFullScreen}) {
     InterstitialAd.load(
-      adUnitId: AdmobManager.interstitial,
+      adUnitId: AdmobManager.interstitialId,
       request: AdRequest(),
       adLoadCallback: InterstitialAdLoadCallback(
         onAdLoaded: (InterstitialAd interstitialAd) {
@@ -35,8 +35,8 @@ class InterstitialAdHelper {
         },
         onAdFailedToLoad: (LoadAdError loadAdError) {
           isAdLoaded = false;
-          print(
-              "loadAdError code ${loadAdError.code}, message ${loadAdError.message}");
+          print("loadAdError Code ${loadAdError.code}");
+          print("loadAdError Message ${loadAdError.message}");
         },
       ),
     );

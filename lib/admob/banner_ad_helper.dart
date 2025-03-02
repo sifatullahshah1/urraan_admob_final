@@ -11,7 +11,7 @@ class BannerAdHelper {
     _bannerAd = BannerAd(
       size: AdSize(
           width: MediaQuery.of(context).size.width.truncate(), height: height),
-      adUnitId: AdmobManager.banner,
+      adUnitId: AdmobManager.bannerAdaptiveId,
       listener: BannerAdListener(onAdLoaded: (asdf) {
         isLoaded = true;
         onAdLoaded();
