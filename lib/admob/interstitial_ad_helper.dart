@@ -48,24 +48,34 @@ class InterstitialAdHelper {
       isAdLoaded = false;
     }
   }
-
-  // InterstitialAdHelper interstitialAdHelper = InterstitialAdHelper();
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //
-  //   interstitialAdHelper.loadInterstitialAds(
-  //     onAdDismissed: () {
-  //       DoNextFunctionality();
-  //     },
-  //     onAdShowFullScreen: () {},
-  //   );
-  // }
-  //
-  // DoNextFunctionality() {
-  //   Navigator.pop(context);
-  // }
-
-  // interstitialAdHelper.showAd();
 }
+
+InterstitialAdHelper interstitialAdHelper = InterstitialAdHelper();
+
+// @override
+// void initState() {
+//   super.initState();
+//
+//   interstitialAdHelper.loadInterstitialAds(
+//     onAdDismissed: () {
+//       Future.delayed(Duration(seconds: 30), () {
+//         MyAppState().updateValue(false); // enable open ads after 30 sec
+//       });
+//       DoNextFunctionality();
+//     },
+//     onAdShowFullScreen: () {
+//       MyAppState().updateValue(true); // disabled app open ads
+//     },
+//   );
+// }
+//
+// DoNextFunctionality() {
+//   Navigator.pop(context);
+// }
+
+// leading: InkWell(
+// onTap: () {
+// interstitialAdHelper.showAdIfAvailable();
+// },
+// child: Icon(Icons.arrow_back_rounded),
+// ),

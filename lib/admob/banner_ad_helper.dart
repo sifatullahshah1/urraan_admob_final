@@ -37,18 +37,18 @@ class BannerAdHelper {
             child: isLoaded ? AdWidget(ad: bannerAd!) : SizedBox(),
           );
   }
-
-  // BannerAdHelper bannerAdHelper = BannerAdHelper();
-
-  //
-  // @override
-  // void didChangeDependencies() {
-  //   super.didChangeDependencies();
-  //   bannerAdHelper.loadBannerAd(context, () {
-  //     setState(() {});
-  //   }, height: 200);
-  // }
-
-  // bottomNavigationBar: BannerAdHelper.getBannerView(
-  // false, bannerAdHelper.isLoaded, bannerAdHelper.bannerAd),
 }
+
+// BannerAdHelper bannerAdHelper = BannerAdHelper();
+
+//
+// @override
+// void didChangeDependencies() {
+//   super.didChangeDependencies();
+//   bannerAdHelper.loadBannerAd(context, () {
+//     setState(() {});
+//   }, height: 200);
+// }
+
+// bottomNavigationBar: BannerAdHelper.getBannerView(
+// false, bannerAdHelper.isLoaded, bannerAdHelper.bannerAd),

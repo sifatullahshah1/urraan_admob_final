@@ -2,41 +2,78 @@ import 'package:flutter_admob_code/admob/admob_manage.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class AppOpenAdHelper {
-  AppOpenAd? appOpenAd;
-  bool isAdLoaded = false;
+  AppOpenAd? _appOpenAd;
+  bool _isAdShowing = false;
 
   void loadAppOpenAd() {
     AppOpenAd.load(
       adUnitId: AdmobManager.appOpenId,
       request: const AdRequest(),
       adLoadCallback: AppOpenAdLoadCallback(
-        onAdLoaded: (AppOpenAd appOpenAd) {
-          this.appOpenAd = appOpenAd;
-          this.appOpenAd?.fullScreenContentCallback = FullScreenContentCallback(
-            onAdDismissedFullScreenContent: (AppOpenAd appOpenAd2) {
-              isAdLoaded = false;
-              this.appOpenAd?.dispose();
-              this.appOpenAd = null;
+        onAdLoaded: (ad) {
+          _appOpenAd = ad;
+          _appOpenAd!.fullScreenContentCallback = FullScreenContentCallback(
+            onAdDismissedFullScreenContent: (ad) {
+              _appOpenAd = null;
+              _isAdShowing = false;
               loadAppOpenAd();
             },
           );
         },
-        onAdFailedToLoad: (LoadAdError loadAdError) {
-          isAdLoaded = false;
-          print(
-              "loadAdError code ${loadAdError.code}, message ${loadAdError.message}");
+        onAdFailedToLoad: (error) {
+          // print('Failed to load an app open ad: $error');
+          _appOpenAd = null;
         },
       ),
     );
   }
 
   void showAdIfAvailable() {
-    if (appOpenAd == null && !isAdLoaded) {
+    if (_appOpenAd == null || _isAdShowing) {
       loadAppOpenAd();
       return;
-    } else {
-      appOpenAd?.show();
-      isAdLoaded = false;
     }
+
+    _isAdShowing = true;
+    _appOpenAd!.show();
   }
 }
+
+class MyAppState {
+  static final MyAppState _instance = MyAppState._internal();
+  factory MyAppState() => _instance;
+  MyAppState._internal();
+
+  bool isOtherAdsDisabled = false;
+
+  void updateValue(bool newValue) {
+    isOtherAdsDisabled = newValue;
+  }
+
+  bool get getIsOtherAdsDisabled => isOtherAdsDisabled;
+}
+
+// with WidgetsBindingObserver {
+// AppOpenAdHelper appOpenAdHelper = AppOpenAdHelper();
+//
+// @override
+// void didChangeAppLifecycleState(AppLifecycleState state) {
+//   super.didChangeAppLifecycleState(state);
+//   if (state == AppLifecycleState.resumed &&
+//       !MyAppState().getIsOtherAdsDisabled) {
+//     appOpenAdHelper.showAdIfAvailable();
+//   }
+// }
+//
+// @override
+// dispose() {
+//   super.dispose();
+//   WidgetsBinding.instance.removeObserver(this);
+// }
+//
+// @override
+// initState() {
+//   super.initState();
+//   WidgetsBinding.instance.addObserver(this);
+//   appOpenAdHelper.loadAppOpenAd();
+// }
