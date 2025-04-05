@@ -39,7 +39,11 @@ class _ScreenInterstitialsState extends State<ScreenInterstitials> {
       appBar: AppBar(
         leading: InkWell(
           onTap: () {
-            interstitialAdHelper.showAdIfAvailable();
+            if (interstitialAdHelper.isAdLoaded) {
+              interstitialAdHelper.showAdIfAvailable();
+            } else {
+              DoNextFunctionality();
+            }
           },
           child: Icon(Icons.arrow_back_rounded),
         ),
