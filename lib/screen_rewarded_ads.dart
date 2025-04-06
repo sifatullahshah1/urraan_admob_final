@@ -70,6 +70,10 @@ class _ScreenRewardedAdsState extends State<ScreenRewardedAds> {
                         TextButton(
                           onPressed: () {
                             rewardedAdHelper.showAdIfAvailable((reward) {
+                              Future.delayed(Duration(seconds: 30), () {
+                                MyAppState().updateValue(
+                                    false); // enable open ads after 30 sec
+                              });
                               print(
                                   "✔ Rewarded: ${reward.amount} ${reward.type}");
                               Navigator.of(context).pop(); // Closes the dialog
