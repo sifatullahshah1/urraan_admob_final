@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_admob_code/admob/appopen_ad_helper.dart';
-import 'package:flutter_admob_code/admob/banner_ad_helper.dart';
+import 'package:flutter_admob_code/screen_banner_ads.dart';
 import 'package:flutter_admob_code/screen_interstitials.dart';
 import 'package:flutter_admob_code/screen_native_ads.dart';
 import 'package:flutter_admob_code/screen_rewarded_ads.dart';
@@ -39,29 +39,24 @@ class _ScreenDashboardState extends State<ScreenDashboard>
     appOpenAdHelper.loadAppOpenAd();
   }
 
-  //
-  BannerAdHelper bannerAdHelper = BannerAdHelper();
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    bannerAdHelper.loadBannerAd(context, () {
-      setState(() {});
-    }, height: 200);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Dashboard"),
-      ),
-      bottomNavigationBar: BannerAdHelper.getBannerView(
-          false, bannerAdHelper.isLoaded, bannerAdHelper.bannerAd),
+      appBar: AppBar(title: Text("Dashboard")),
       body: Center(
         child: Container(
           child: Column(
             children: [
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (builder) => ScreenBannerAds()));
+                },
+                child: Text("Open Screen Banner"),
+              ),
+              SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   Navigator.push(

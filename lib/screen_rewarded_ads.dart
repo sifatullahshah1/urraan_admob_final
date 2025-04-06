@@ -49,13 +49,50 @@ class _ScreenRewardedAdsState extends State<ScreenRewardedAds> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Text(
+                "Before rewarded ads showing user should need to have a clear flow that user will watch the ads if button text is clear that next is rewarded ads showing then no need to show information dialog if button text is not clear then first show dialog before rewarded ads"),
+            ElevatedButton(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text("Information"),
+                      content: Text(
+                          "To Download/Access this feature you need to watch the rewarded ads first"),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop(); // Closes the dialog
+                          },
+                          child: Text("Cancel"),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            rewardedAdHelper.showAdIfAvailable((reward) {
+                              print(
+                                  "✔ Rewarded: ${reward.amount} ${reward.type}");
+                              Navigator.of(context).pop(); // Closes the dialog
+                            });
+                          },
+                          child:
+                              Text("Watch Ad to Download/Access this feature"),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+              child: const Text("Download"),
+            ),
+            SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 rewardedAdHelper.showAdIfAvailable((reward) {
                   print("✔ Rewarded: ${reward.amount} ${reward.type}");
                 });
               },
-              child: const Text("Show Rewarded Ad"),
+              child: const Text("Watch Ad to Download/Access this feature"),
             ),
           ],
         ),
