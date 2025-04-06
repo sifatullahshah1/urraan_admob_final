@@ -51,8 +51,11 @@ class _ScreenRewardedInterstitialAdsState
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-                "Before rewarded ads showing user should need to have a clear flow that user will watch the ads if button text is clear that next is rewarded ads showing then no need to show information dialog if button text is not clear then first show dialog before rewarded ads"),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                  "Before rewarded ads showing user should need to have a clear flow that user will watch the ads if button text is clear that next is rewarded ads showing then no need to show information dialog if button text is not clear then first show dialog before rewarded ads"),
+            ),
             ElevatedButton(
               onPressed: () {
                 showDialog(
@@ -105,10 +108,6 @@ class _ScreenRewardedInterstitialAdsState
                 });
               },
               child: const Text("Watch Ad to Download/Access this feature"),
-            ),
-            ElevatedButton(
-              onPressed: () {},
-              child: const Text("Show Rewarded Interstitial Ad"),
             ),
           ],
         ),
